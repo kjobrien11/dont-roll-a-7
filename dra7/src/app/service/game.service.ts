@@ -12,12 +12,15 @@ export class GameService {
   private rollNumberSubject = new BehaviorSubject<number | null>(null);
   private previousRollNumberSubject = new BehaviorSubject<number>(0);
   private previousRollOddsSubject = new BehaviorSubject<number>(0);
+  private highestScoreOddsSubject = new BehaviorSubject<number>(100);
+
 
   rollNumber$ = this.rollNumberSubject.asObservable();
   currentScore$ = this.currentScoreSubject.asObservable();
   highScore$ = this.highScoreSubject.asObservable();
   previousRollNumber$ = this.previousRollNumberSubject.asObservable();
   previousRollOdds$ = this.previousRollOddsSubject.asObservable();
+  highestScoreOdds$ = this.highestScoreOddsSubject.asObservable();
 
   constructor() { }
 
@@ -47,6 +50,8 @@ export class GameService {
     const odds = Math.pow(chanceSurvive, spinsSurvived) * 100;
     const roundedOdds = Math.round(odds * 100) / 100;
     this.previousRollOddsSubject.next(roundedOdds);
+    const high = Math.min(this.highestScoreOddsSubject.value, this.previousRollOddsSubject.value)
+    this.highestScoreOddsSubject.next(high);
   }
 
 }
