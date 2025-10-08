@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -6,8 +7,11 @@ import { Injectable } from '@angular/core';
 export class GameService {
 
   dontRoll: number = 7;
-  highScore: number = 0;
-  currentScore: number = 0;
+  private currentScoreSubject = new BehaviorSubject<number>(0);
+  private highScoreSubject = new BehaviorSubject<number>(0);
+
+  currentScore$ = this.currentScoreSubject.asObservable();
+  highScore$ = this.highScoreSubject.asObservable();
 
   constructor() { }
 
@@ -15,21 +19,14 @@ export class GameService {
     const roll = Math.floor(Math.random() * 180) + 1;
 
     if (roll === this.dontRoll) {
-      this.highScore = Math.max(this.highScore, this.currentScore);
-      this.currentScore = 0;
+      const high = Math.max(this.highScoreSubject.value, this.currentScoreSubject.value);
+      this.highScoreSubject.next(high);
+      this.currentScoreSubject.next(0);
     } else {
-      this.currentScore += 1;
+      this.currentScoreSubject.next(this.currentScoreSubject.value + 1);
     }
 
     return roll;
-  }
-
-  getHighScore(){
-    return this.highScore;
-  }
-
-  getScore(){
-    return this.currentScore;
   }
 
 }
