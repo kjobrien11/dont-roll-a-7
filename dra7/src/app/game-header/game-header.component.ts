@@ -13,11 +13,13 @@ export class GameHeaderComponent {
   currentScore$!: Observable<number>;
   highScore$!: Observable<number>;
   previousScore$!: Observable<number>;
+  previousOdds$!: Observable<number>;
 
   constructor(private gameService: GameService) {
     this.currentScore$ = this.gameService.currentScore$;
     this.highScore$ = this.gameService.highScore$;
     this.previousScore$ = this.gameService.previousRollNumber$
+    this.previousOdds$ = this.gameService.previousRollOdds$;
   }
 
 }
