@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { GameBoardSqaureComponent } from '../game-board-sqaure/game-board-sqaure.component';
 import { NgFor } from '@angular/common';
 import { GameService } from '../service/game.service';
@@ -11,9 +11,10 @@ import { Observable } from 'rxjs';
   templateUrl: './game-board.component.html',
   styleUrl: './game-board.component.css'
 })
-export class GameBoardComponent {
+export class GameBoardComponent implements OnInit {
   rollNumber$!: Observable<number | null>;
   values: (number | null)[] = Array(180).fill(null);
+  currentRole: number = 0;
 
 
   squares = Array.from({ length: 180 });
@@ -21,14 +22,43 @@ export class GameBoardComponent {
     this.rollNumber$ = this.gameService.rollNumber$;
   }
 
-  roll(){
+ngOnInit(): void {
+  const startRolling = () => {
+    let count = 0;
+
+    const rollOnce = () => {
+      if (count >= 180) return;
+      const result = this.roll();
+      if (result === 7) {
+        setTimeout(() => {
+          this.resetBoard();
+          startRolling();
+        }, 3000);
+
+        return;
+      }
+      count++;
+      setTimeout(rollOnce, 1000);
+    };
+    rollOnce();
+  };
+
+  startRolling();
+}
+
+  roll() {
     const roll = this.gameService.roll();
     const nextIndex = this.values.findIndex(v => v === null);
     console.log(nextIndex);
     if (nextIndex !== -1) {
       this.values[nextIndex] = roll;
     }
+    return roll;
   }
-  
+
+  resetBoard() {
+    this.values = Array(180).fill(null);
+  }
+
 
 }

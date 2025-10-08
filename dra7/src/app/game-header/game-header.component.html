@@ -1,5 +1,11 @@
 <div class="game-header-container">
-    <h1>Don't Roll a 7!</h1>
+    <div class="title">
+        <h1>Don't Roll 7.</h1>
+    </div>
+    <div class = "scores">
     <h2>Current Score: {{currentScore$ | async}}</h2>
-    <h2>High Score: {{highScore$ | async}}</h2>
+    <h2>Previous Score: {{previousScore$ | async}}</h2>
+    <h2 style="color:gold;">High Score: {{highScore$ | async}}</h2>
+    </div>
+
 </div>

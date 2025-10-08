@@ -1,5 +1,4 @@
 <div class="game-board-container">
-    <button (click)="roll()"></button>
     <app-game-board-sqaure *ngFor="let x of squares; let i = index" [index]="i + 1" [roll]="values[i]">
     </app-game-board-sqaure>
 </div>
