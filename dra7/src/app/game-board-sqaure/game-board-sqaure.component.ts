@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { GameService } from '../service/game.service';
 
 @Component({
   selector: 'app-game-board-sqaure',
@@ -8,6 +9,8 @@ import { Component } from '@angular/core';
 })
 export class GameBoardSqaureComponent {
 
-  roll: number = 5;
+  @Input() index!: number;
+  @Input() roll!: number | null;
+
 
 }

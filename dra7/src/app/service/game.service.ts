@@ -9,14 +9,17 @@ export class GameService {
   dontRoll: number = 7;
   private currentScoreSubject = new BehaviorSubject<number>(0);
   private highScoreSubject = new BehaviorSubject<number>(0);
+  private rollNumberSubject = new BehaviorSubject<number | null>(null);
 
+  rollNumber$ = this.rollNumberSubject.asObservable();
   currentScore$ = this.currentScoreSubject.asObservable();
   highScore$ = this.highScoreSubject.asObservable();
 
   constructor() { }
 
   roll(): number {
-    const roll = Math.floor(Math.random() * 180) + 1;
+    const roll = Math.floor(Math.random() * 100);
+    this.rollNumberSubject.next(roll);
 
     if (roll === this.dontRoll) {
       const high = Math.max(this.highScoreSubject.value, this.currentScoreSubject.value);
