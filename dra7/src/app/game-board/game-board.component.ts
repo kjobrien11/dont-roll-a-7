@@ -22,7 +22,6 @@ export class GameBoardComponent {
   }
 
   roll(){
-    this.gameService.roll();
     const roll = this.gameService.roll();
     const nextIndex = this.values.findIndex(v => v === null);
     console.log(nextIndex);

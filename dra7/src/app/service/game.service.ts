@@ -18,7 +18,7 @@ export class GameService {
   constructor() { }
 
   roll(): number {
-    const roll = Math.floor(Math.random() * 100);
+    const roll = Math.floor(Math.random() * 10);
     this.rollNumberSubject.next(roll);
 
     if (roll === this.dontRoll) {

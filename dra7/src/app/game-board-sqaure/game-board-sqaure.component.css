@@ -1,6 +1,5 @@
 
 .game-board-square-container {
-    /* background-color: rgb(98, 204, 63); */
     background-color: white;
     display: flex;
     justify-content: center;
@@ -11,4 +10,12 @@
     width: auto;
     height: 100%;
     aspect-ratio: 1 / 1;
+}
+
+.green{
+    background-color: rgb(98, 204, 63);
+}
+
+.red{
+    background-color: red;
 }
