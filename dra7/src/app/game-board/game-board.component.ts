@@ -13,6 +13,7 @@ import { Observable } from 'rxjs';
 })
 export class GameBoardComponent {
   rollNumber$!: Observable<number | null>;
+  values: (number | null)[] = Array(180).fill(null);
 
 
   squares = Array.from({ length: 180 });
@@ -22,6 +23,12 @@ export class GameBoardComponent {
 
   roll(){
     this.gameService.roll();
+    const roll = this.gameService.roll();
+    const nextIndex = this.values.findIndex(v => v === null);
+    console.log(nextIndex);
+    if (nextIndex !== -1) {
+      this.values[nextIndex] = roll;
+    }
   }
   
 
