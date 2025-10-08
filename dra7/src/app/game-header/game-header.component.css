@@ -1,0 +1,12 @@
+.game-header-container{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    text-align: center;
+    align-items: center;
+    gap: 2rem;
+    border-bottom: solid;
+    color: white;
+    background-color: black;
+    height: 10vh;
+}
