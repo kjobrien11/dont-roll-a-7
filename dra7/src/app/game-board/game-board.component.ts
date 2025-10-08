@@ -12,12 +12,14 @@ import { Observable } from 'rxjs';
   styleUrl: './game-board.component.css'
 })
 export class GameBoardComponent implements OnInit {
+
+  private readonly TOTAL_SQUARES: number = 90;
   rollNumber$!: Observable<number | null>;
-  values: (number | null)[] = Array(180).fill(null);
+  values: (number | null)[] = Array(this.TOTAL_SQUARES).fill(null);
   currentRole: number = 0;
 
 
-  squares = Array.from({ length: 180 });
+  squares = Array.from({ length: this.TOTAL_SQUARES });
   constructor(public gameService: GameService) {
     this.rollNumber$ = this.gameService.rollNumber$;
   }

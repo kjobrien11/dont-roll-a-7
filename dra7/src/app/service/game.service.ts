@@ -40,11 +40,13 @@ export class GameService {
     return roll;
   }
 
-  calculateOdds(spinsSurvived:number) {
+  calculateOdds(spinsSurvived: number) {
     const chanceLose = 1 / this.TOTAL_CHOICES;
     console.log(chanceLose)
     const chanceSurvive = 1 - chanceLose;
-    this.previousRollOddsSubject.next(Math.pow(chanceSurvive, spinsSurvived) * 100);
+    const odds = Math.pow(chanceSurvive, spinsSurvived) * 100;
+    const roundedOdds = Math.round(odds * 100) / 100;
+    this.previousRollOddsSubject.next(roundedOdds);
   }
 
 }

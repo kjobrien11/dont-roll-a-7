@@ -1,8 +1,8 @@
 .game-board-container {
     background-color: lightcyan;
-    height: calc(90vw * 9 / 20);
+    height: calc(90vw * 6 / 15);
     display: grid;
-    grid-template-columns: repeat(20, 1fr);
-    grid-template-rows: repeat(9, 1fr);
+    grid-template-columns: repeat(15, 1fr);
+    grid-template-rows: repeat(6, 1fr);
     gap: 0rem;
 }
