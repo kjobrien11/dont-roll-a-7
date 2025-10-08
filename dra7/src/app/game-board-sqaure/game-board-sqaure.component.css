@@ -1,0 +1,5 @@
+.game-board-square-container{
+    height: 5vh;
+    width: 5vh;
+    background-color: brown;
+}
