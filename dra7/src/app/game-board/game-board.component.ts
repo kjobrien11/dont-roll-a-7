@@ -13,7 +13,7 @@ import { Observable } from 'rxjs';
 })
 export class GameBoardComponent implements OnInit {
 
-  private readonly TOTAL_SQUARES: number = 90;
+  private readonly TOTAL_SQUARES: number = 105;
   rollNumber$!: Observable<number | null>;
   values: (number | null)[] = Array(this.TOTAL_SQUARES).fill(null);
   currentRole: number = 0;
