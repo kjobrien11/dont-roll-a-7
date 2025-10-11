@@ -29,7 +29,7 @@ ngOnInit(): void {
     let count = 0;
 
     const rollOnce = () => {
-      if (count >= 180) return;
+      if (count >= this.TOTAL_SQUARES) return;
       const result = this.roll();
       if (result === 7) {
         setTimeout(() => {
@@ -59,7 +59,7 @@ ngOnInit(): void {
   }
 
   resetBoard() {
-    this.values = Array(180).fill(null);
+    this.values = Array(this.TOTAL_SQUARES).fill(null);
   }
 
 
